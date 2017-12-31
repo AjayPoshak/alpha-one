@@ -1,12 +1,12 @@
 import React from 'react'
-import {Route, Switch} from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import ReadingList from '../components/ReadingList'
 import NotFound from '../components/NotFound'
 
 const App = () => {
-	return(
+	return (
 		<Switch>
-			<Route exact path='/reading' component={ReadingList} />
+			<Route exact path="/reading" component={ReadingList} />
 			<Route component={NotFound} />
 		</Switch>
 	)

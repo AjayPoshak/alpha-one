@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import {readingList} from './components/ReadingList/ReadingListReducer'
+import { readingList } from './components/ReadingList/ReadingListReducer'
 
 const rootReducer = combineReducers({
-    readingList
+	readingList
 })
 
 export default rootReducer

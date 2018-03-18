@@ -22,6 +22,7 @@ module.exports = {
 				loader: ["style-loader", "css-loader", "less-loader"],
 				exclude: /node_modules/
 			}
+			// TODO: Add a svg loader
 		]
 	},
 	plugins: [

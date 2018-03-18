@@ -1,66 +1,29 @@
-import path from "path"
-import Express from "express"
-import React from "react"
-import request from "request-promise-native"
-import { createStore } from "redux"
-import { Provider } from "react-redux"
-import { renderToString } from "react-dom/server"
-import { StaticRouter } from "react-router"
-import rootReducer from "../rootReducer"
-import App from "../routing"
-import { READING_LIST_URL } from "../globals/constants"
-import { handleRender } from "./helpers"
+require("babel-polyfill")
+const koa = require("koa")
 
-const app = Express()
-const port = 3000
+const app = new koa()
+require("dotenv").config({ path: "./dev.env" })
 
-// Serve static files
-app.use("build/server", Express.static("build/server"))
+const Router = require("koa-router"),
+	router = new Router()
 
-app.get("*", (req, res) => {
-	const context = {},
-		options = {
-			uri: READING_LIST_URL,
-			method: "GET"
-		}
-
-	let hydrateState = {}
-	request(options)
-		.then(response => {
-			hydrateState = {
-				readingList: {
-					data: JSON.parse(response)
-				}
-			}
-
-			const store = createStore(rootReducer, hydrateState),
-				preloadedState = store.getState()
-
-			const html = renderToString(
-				<Provider store={store}>
-					<StaticRouter location={req.url} context={context}>
-						<App />
-					</StaticRouter>
-				</Provider>
-			)
-
-			if (context.url) {
-				// Handle Redirection
-				res.writeHead(301, { Location: context.url })
-				res.end()
-			} else {
-				handleRender(req, res, html, preloadedState)
-			}
-		})
-		.catch(err => console.log("error", err))
+app.use(async (ctx, next) => {
+	const start = Date.now()
+	await next()
+	const end = Date.now()
+	console.log(`${ctx.method} ${ctx.url} time taken ${end - start}`)
 })
 
-// handle every other route with index.html, which will contain
-// a script tag to your application's JavaScript file(s).
-app.get("*", (request, response) => {
-	response.sendFile(path.resolve("src/index.html"))
+app.use(async (ctx, next) => {
+	try {
+		await next()
+	} catch (err) {
+		console.error(err)
+	}
 })
 
-app.listen(process.env.NODE_PORT || port, () => {
-	console.log(`Started listneing on ${port}`)
-})
+require("./serverRoutes/index")(router)
+
+app.use(router.routes()).use(router.allowedMethods())
+
+app.listen(process.env.PORT)

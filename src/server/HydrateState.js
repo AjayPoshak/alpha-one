@@ -5,7 +5,7 @@ import { createStore } from "redux"
 import { Provider } from "react-redux"
 
 import App from "../routing"
-import rootReducer from "../rootReducer"
+import rootReducer from "../reducers/rootReducer"
 import { renderFullPage } from "../utils/helpers"
 
 async function hydrateState(ctx, next) {

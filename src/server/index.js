@@ -1,12 +1,18 @@
 require("babel-polyfill")
-const koa = require("koa")
+// Imports
+const Koa = require("koa"),
+	bodyParser = require("koa-bodyparser"),
+	Router = require("koa-router"),
+	db = require("./bootStrap")
 
-const app = new koa()
 require("dotenv").config({ path: "./dev.env" })
 
-const Router = require("koa-router"),
+const app = new Koa(),
 	router = new Router()
 
+db.connect()
+
+app.use(bodyParser())
 app.use(async (ctx, next) => {
 	const start = Date.now()
 	await next()
@@ -18,7 +24,7 @@ app.use(async (ctx, next) => {
 	try {
 		await next()
 	} catch (err) {
-		console.error(err)
+		console.error(`Global error handling ${err}`)
 	}
 })
 

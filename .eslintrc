@@ -29,7 +29,8 @@
 	"globals": {
 		"window": true,
 		"document": true,
-		"fetch": true
+		"fetch": true,
+		"node": true
 	},
 	"env": {
 		"browser": true,

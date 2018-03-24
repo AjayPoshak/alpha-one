@@ -9,7 +9,6 @@ import rootReducer from "../reducers/rootReducer"
 import { renderFullPage } from "../utils/helpers"
 
 async function hydrateState(ctx, next) {
-	console.log("hydrating state======>", ctx.hydrateState)
 	const store = createStore(rootReducer, ctx.hydrateState),
 		preloadedState = store.getState(),
 		context = {}

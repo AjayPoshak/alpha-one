@@ -5,7 +5,7 @@ import styled from "styled-components"
 
 import Header from "../../components/Header"
 import Cards from "../../components/Cards"
-import { fetchReadingList } from "./ActionCreators"
+import { shouldFetchReadingList } from "./ActionCreators"
 
 const rList = styled.section`
 	width: 100%;
@@ -27,7 +27,7 @@ const CardContainer = styled.article`
 
 class ReadingList extends Component {
 	componentDidMount() {
-		this.props.dispatch(fetchReadingList())
+		this.props.dispatch(shouldFetchReadingList())
 	}
 
 	renderCards() {

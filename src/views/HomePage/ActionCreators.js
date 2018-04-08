@@ -14,10 +14,10 @@ export function fetchBlogsList() {
 
 export function shouldFetchBlogsList() {
 	return (dispatch, getState) => {
-		const { state } = getState(),
-			{ homePage } = state
-		if (homePage && homePage.data && homePage.data.length > 0) {
-			fetchBlogsList()
+		const { homePage } = getState()
+
+		if (homePage && homePage.blogs && homePage.blogs.length === 0) {
+			dispatch(fetchBlogsList())
 		}
 	}
 }

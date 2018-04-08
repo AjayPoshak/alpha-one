@@ -5,7 +5,7 @@ import styled from "styled-components"
 import Blog from "../../components/Blog"
 import Bio from "./Bio"
 import Header from "../../components/Header"
-import { fetchBlogsList } from "./ActionCreators"
+import { shouldFetchBlogsList } from "./ActionCreators"
 
 const HomeContainer = styled.section`
 	padding: 15px;
@@ -13,7 +13,7 @@ const HomeContainer = styled.section`
 `
 class HomePage extends Component {
 	componentDidMount() {
-		this.props.dispatch(fetchBlogsList())
+		this.props.dispatch(shouldFetchBlogsList())
 		// this.props.dispatch(shouldFetchBio())
 	}
 

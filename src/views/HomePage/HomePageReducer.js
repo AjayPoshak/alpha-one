@@ -3,7 +3,7 @@ import * as types from "./ActionTypes"
 const initialState = {
 	isLoading: false,
 	isError: false,
-	data: {}
+	blogs: []
 }
 export default function homePage(state = initialState, action) {
 	switch (action.type) {

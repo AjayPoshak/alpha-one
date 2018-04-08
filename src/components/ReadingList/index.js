@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 
 import Header from "../Header"
-import Cards from "./Cards"
+import Cards from "../Cards/index"
 import { fetchReadingList } from "./ActionCreators"
 import "../../styles/ReadingList.less"
 

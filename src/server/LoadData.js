@@ -15,7 +15,7 @@ async function loadData(ctx, next) {
 
 		case "/home":
 			const homePage = {}
-			homePage.data = await makeAPICall(request, BLOGS_LIST_URL)
+			homePage.blogs = await makeAPICall(request, BLOGS_LIST_URL)
 			ctx.hydrateState = { ...ctx.hydrateState, homePage }
 			await next()
 			break

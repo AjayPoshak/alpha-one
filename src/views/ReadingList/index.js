@@ -3,10 +3,9 @@ import { connect } from "react-redux"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-import Header from "../Header"
-import Cards from "../Cards/index"
+import Header from "../../components/Header"
+import Cards from "../../components/Cards"
 import { fetchReadingList } from "./ActionCreators"
-import "../../styles/ReadingList.less"
 
 const rList = styled.section`
 	width: 100%;

@@ -1,12 +1,16 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import styled from "styled-components"
 
-import Blog from "./Blog"
+import Blog from "../../components/Blog"
 import Bio from "./Bio"
-import Header from "../Header"
+import Header from "../../components/Header"
 import { fetchBlogsList } from "./ActionCreators"
-import "../../styles/homePage.less"
 
+const HomeContainer = styled.section`
+	padding: 15px;
+	background: #fff;
+`
 class HomePage extends Component {
 	componentDidMount() {
 		this.props.dispatch(fetchBlogsList())
@@ -15,7 +19,6 @@ class HomePage extends Component {
 
 	renderBlogs() {
 		const { blogs } = this.props.homePage
-		console.log(blogs)
 		if (blogs && blogs.length > 0) {
 			const blogArr = blogs.map((blog, index) => (
 				<Blog key={index} heading={blog.heading} synopsis={blog.synopsis} />
@@ -41,11 +44,11 @@ class HomePage extends Component {
 		return (
 			<section>
 				<Header />
-				<section className="home-container">
+				<HomeContainer>
 					<header />
 					{blogs}
 					<aside>{bio}</aside>
-				</section>
+				</HomeContainer>
 			</section>
 		)
 	}

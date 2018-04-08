@@ -1,11 +1,29 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
+import styled from "styled-components"
 
-import Header from "../Header"
-import Cards from "./Cards"
+import Header from "../../components/Header"
+import Cards from "../../components/Cards"
 import { fetchReadingList } from "./ActionCreators"
-import "../../styles/ReadingList.less"
+
+const rList = styled.section`
+	width: 100%;
+`
+const SectionHeading = styled.h1`
+	width: 50px;
+	margin: 0 auto;
+	font-size: 16px;
+	font-weight: normal;
+	padding: 7px;
+`
+const BookListCardWrapper = styled.div`
+	margin-left: 10px;
+	margin-right: 10px;
+`
+const CardContainer = styled.article`
+	width: 100%;
+`
 
 class ReadingList extends Component {
 	componentDidMount() {
@@ -25,18 +43,14 @@ class ReadingList extends Component {
 	}
 
 	render() {
-		const cards = this.renderCards()
-
 		return (
-			<section className="rList">
+			<rList>
 				<Header />
-				<div className="rList--header">
-					<h1 className="section--heading">Books</h1>
-				</div>
-				<div className="rList--card-wrapper">
-					<article className="rList--card-container">{cards}</article>
-				</div>
-			</section>
+				<SectionHeading>Books</SectionHeading>
+				<BookListCardWrapper>
+					<CardContainer>{this.renderCards()}</CardContainer>
+				</BookListCardWrapper>
+			</rList>
 		)
 	}
 }

@@ -1,11 +1,19 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 
+import { HAM_IMG_URL } from "../../globals/constants"
+import { BlogHeader, Hamburger, Title, HamExpand, HamListItem } from "./style"
+
 class Header extends Component {
-	constructor(props) {
-		super(props)
+	constructor() {
+		super()
 		this.state = {
-			isHamburgerClosed: true
+			isHamburgerClosed: true,
+			navLinks: [
+				{ text: "Home", link: "/home" },
+				{ text: "Reading List", link: "/books" },
+				{ text: "Bio", link: "/bio" }
+			]
 		}
 		this.handleHamClick = this.handleHamClick.bind(this)
 	}
@@ -18,38 +26,28 @@ class Header extends Component {
 
 	render() {
 		return (
-			<section className="top-section">
-				<div className="blog-header">
-					<div
+			<section>
+				<BlogHeader>
+					<Hamburger
 						onClick={this.handleHamClick}
 						onKeyPress={this.handleHamClick}
 						role="button"
 						tabIndex="0"
 					>
-						<img
-							className="__ham"
-							src="http://res.cloudinary.com/ddbxa4afa/image/upload/v1521130892/ham_fsbm9r.png"
-							alt=""
-						/>
-					</div>
-					<p className="__title">The Late Night Blog</p>
+						<img className="__ham" src={HAM_IMG_URL} alt="" />
+					</Hamburger>
+					<Title>The Late Night Blog</Title>
 					<p />
-				</div>
-				<div
-					className={`ham-expand ${this.state.isHamburgerClosed ? "__close" : "__open"}`}
-				>
+				</BlogHeader>
+				<HamExpand closed={this.state.isHamburgerClosed}>
 					<ul>
-						<li>
-							<Link to="/home">Home</Link>
-						</li>
-						<li>
-							<Link to="/books">Reading List</Link>
-						</li>
-						<li>
-							<Link to="/bio">Bio</Link>
-						</li>
+						{this.state.navLinks.map((navItem, index) => (
+							<HamListItem key={index}>
+								<Link to={navItem.link}>{navItem.text}</Link>
+							</HamListItem>
+						))}
 					</ul>
-				</div>
+				</HamExpand>
 			</section>
 		)
 	}

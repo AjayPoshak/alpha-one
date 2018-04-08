@@ -1,8 +1,10 @@
 import React from "react"
 import { Route, Switch } from "react-router-dom"
-import ReadingList from "../components/ReadingList"
-import HomePage from "../components/HomePage"
-import NotFound from "../components/NotFound"
+
+import ReadingList from "../views/ReadingList"
+import HomePage from "../views/HomePage"
+import NotFound from "../views/NotFound"
+import "../styles/reset"
 
 const App = () => (
 	<Switch>

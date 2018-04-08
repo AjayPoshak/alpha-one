@@ -1,6 +1,6 @@
 export function makeAPICall(request, url, method = "GET") {
 	const options = {
-		uri: url,
+		uri: `${process.env.BASE_URL}${url}`,
 		method
 	}
 	return request(options)

@@ -1,7 +1,6 @@
-const path = require("path")
-const webpack = require("webpack")
-const CleanWebpackPlugin = require("clean-webpack-plugin")
-const nodeExternals = require("webpack-node-externals")
+const path = require("path"),
+	webpack = require("webpack"),
+	nodeExternals = require("webpack-node-externals")
 
 module.exports = {
 	entry: {
@@ -24,9 +23,5 @@ module.exports = {
 			}
 		]
 	},
-	devtool: "source-map",
-	plugins: [
-		new CleanWebpackPlugin(["./src/build/server"]),
-		new webpack.HotModuleReplacementPlugin()
-	]
+	devtool: "source-map"
 }

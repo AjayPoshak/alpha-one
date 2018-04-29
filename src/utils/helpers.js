@@ -1,10 +1,13 @@
-export function makeAPICall(request, url, method = "GET") {
+import axios from "axios"
+
+export function makeAPICall(url, method = "GET") {
+	console.log(typeof url, url)
 	const options = {
-		uri: `${process.env.BASE_URL}${url}`,
+		url: `${process.env.BASE_URL}${url}`,
 		method
 	}
-	return request(options)
-		.then(response => Promise.resolve(JSON.parse(response)))
+	return axios(options)
+		.then(response => Promise.resolve(response.data))
 		.catch(err => Promise.reject(err))
 }
 

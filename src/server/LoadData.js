@@ -1,4 +1,3 @@
-import request from "request-promise-native"
 import { makeAPICall } from "../utils/helpers"
 import { READING_LIST_URL, BLOGS_LIST_URL } from "../globals/constants"
 
@@ -6,7 +5,7 @@ async function loadData(ctx, next) {
 	switch (ctx.request.url) {
 		case "/books":
 			const readingList = {}
-			readingList.data = await makeAPICall(request, READING_LIST_URL)
+			readingList.data = await makeAPICall(READING_LIST_URL)
 			if (readingList) {
 				ctx.hydrateState = { ...ctx.hydrateState, readingList }
 			}
@@ -15,7 +14,7 @@ async function loadData(ctx, next) {
 
 		case "/home":
 			const homePage = {}
-			homePage.blogs = await makeAPICall(request, BLOGS_LIST_URL)
+			homePage.blogs = await makeAPICall(BLOGS_LIST_URL)
 			ctx.hydrateState = { ...ctx.hydrateState, homePage }
 			await next()
 			break

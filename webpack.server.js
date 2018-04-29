@@ -13,15 +13,7 @@ module.exports = {
 		path: path.resolve(__dirname, "build/server")
 	},
 	module: {
-		rules: [
-			{ test: /\.js$/, loader: "babel-loader", exclude: /node_modules/ },
-			{ test: /\.jsx$/, loader: "babel-loader", exclude: /node_modules/ },
-			{
-				test: /\.less$/,
-				loader: ["css-loader", "less-loader"],
-				exclude: /node_modules/
-			}
-		]
+		rules: [{ test: /\.jsx?$/, loader: "babel-loader", exclude: /node_modules/ }]
 	},
 	devtool: "source-map"
 }

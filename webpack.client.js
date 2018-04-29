@@ -11,13 +11,7 @@ module.exports = {
 	},
 	module: {
 		rules: [
-			{ test: /\.js$/, loader: "babel-loader", exclude: /node_modules/ },
-			{ test: /\.jsx$/, loader: "babel-loader", exclude: /node_modules/ },
-			{
-				test: /\.less$/,
-				loader: ["style-loader", "css-loader", "less-loader"],
-				exclude: /node_modules/
-			}
+			{ test: /\.jsx?$/, loader: "babel-loader", exclude: /node_modules/ }
 			// TODO: Add a svg loader
 		]
 	},

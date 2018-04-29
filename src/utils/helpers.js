@@ -24,7 +24,7 @@ export function renderFullPage(html, preloadedState) {
 	<script>
 	window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, "\\u003c")}
 	</script>
-	<script src="http://localhost:8080/build/client/app.bundle.js"></script>
+	<script src="build/client/main.bundle.js"></script>
 </html>
 `
 }

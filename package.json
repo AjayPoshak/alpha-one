@@ -5,16 +5,16 @@
 	"license": "MIT",
 	"dependencies": {
 		"babel-polyfill": "^6.26.0",
-		"clean-webpack-plugin": "^0.1.17",
+		"clean-webpack-plugin": "^0.1.19",
 		"dotenv": "^5.0.0",
 		"express": "^4.16.2",
-		"html-webpack-plugin": "^2.30.1",
+		"html-webpack-plugin": "^3.2.0",
 		"koa": "^2.4.1",
 		"koa-bodyparser": "^4.2.0",
 		"koa-router": "^7.4.0",
+		"koa-static": "^4.0.2",
 		"mongodb": "^3.0.4",
 		"npm-run-all": "^4.1.2",
-		"pm2": "^2.9.1",
 		"prop-types": "^15.6.0",
 		"react": "^16.2.0",
 		"react-dom": "^16.2.0",
@@ -26,8 +26,8 @@
 		"request": "^2.83.0",
 		"request-promise-native": "^1.0.5",
 		"styled-components": "^3.2.5",
-		"webpack": "^3.10.0",
-		"webpack-node-externals": "^1.6.0"
+		"webpack": "^4.6.0",
+		"webpack-node-externals": "^1.7.2"
 	},
 	"devDependencies": {
 		"babel-cli": "^6.26.0",
@@ -49,12 +49,18 @@
 		"nodemon": "^1.14.6",
 		"prettier": "^1.9.2",
 		"style-loader": "^0.19.1",
-		"webpack-dev-server": "^2.9.7"
+		"webpack-cli": "^2.0.15",
+		"webpack-dev-server": "^3.1.3"
 	},
 	"scripts": {
-		"local": "NODE_ENV=development PORT=3000 run-p local:*",
-		"local:client": "webpack-dev-server --config ./webpack.client.js --hot",
-		"local:server": "webpack --config ./webpack.server.js --watch",
-		"local:serve": "nodemon ./build/server/app.bundle.js"
+		"local": "NODE_ENV=development PORT=3000 run-p local:* start:server",
+		"local:client": "webpack-dev-server --mode development --config ./webpack.client.js --hot",
+		"local:server": "webpack --mode development --config ./webpack.server.js --watch",
+		"start:server": "nodemon ./build/server/app.bundle.js",
+		"build:local": "webpack --mode development --config ./webpack.client.js",
+		"build:prod": "npm run clean && npm run build:client & npm run build:server",
+		"build:client": "webpack --mode production --config ./webpack.client.js",
+		"build:server": "webpack --mode production --config ./webpack.server.js",
+		"clean": "rm -rf build"
 	}
 }

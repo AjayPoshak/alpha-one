@@ -1,12 +1,8 @@
-const path = require("path")
-const webpack = require("webpack")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const CleanWebpackPlugin = require("clean-webpack-plugin")
+const path = require("path"),
+	webpack = require("webpack"),
+	HtmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
-	entry: {
-		app: "./src/index.js"
-	},
 	devtool: "inline-source-map",
 	output: {
 		filename: "[name].bundle.js",
@@ -26,7 +22,6 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new CleanWebpackPlugin(["./src/build/client"]),
 		new HtmlWebpackPlugin({
 			template: "./src/index.html",
 			title: "Data about books"

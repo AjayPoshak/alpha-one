@@ -2,6 +2,7 @@ require("babel-polyfill")
 // Imports
 const Koa = require("koa"),
 	bodyParser = require("koa-bodyparser"),
+	serve = require("koa-static"),
 	Router = require("koa-router"),
 	db = require("./bootStrap")
 
@@ -12,6 +13,7 @@ const app = new Koa(),
 
 db.connect()
 
+app.use(serve("."))
 app.use(bodyParser())
 app.use(async (ctx, next) => {
 	const start = Date.now()
